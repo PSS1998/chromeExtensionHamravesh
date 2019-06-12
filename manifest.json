@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+ 
+    "name": "UpDamus", 
+    "description": "for Monitoring websites.",
+    "version": "1.0",
+    "author": "Parsa Sadri",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "UpDamus"
+    },
+    "permissions": [
+        "activeTab",
+		"tabs",
+		"cookies",
+        "https://*/",
+		"<all_urls>",
+        "storage"
+     ]
+}
