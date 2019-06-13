@@ -125,7 +125,7 @@ function getReqmetric(URL) {
 	
 }
 
-function getReq(URL, targetURL, token) {
+function getReqMonitors(URL, targetURL) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status >= 200) {
@@ -142,15 +142,21 @@ function getReq(URL, targetURL, token) {
     };
     xhttp.open("GET", URL, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
-	if(token == true){
-		chrome.storage.local.get('Token', function(items){
-			xhttp.setRequestHeader("Authorization", "Token " + items.Token);
-			xhttp.send();
-		});
-	}
-	else{
+	chrome.storage.local.get('Token', function(items){
+		xhttp.setRequestHeader("Authorization", "Token " + items.Token);
 		xhttp.send();
-	}
+	});
+}
+
+function getReqProbers(URL, cb) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status >= 200) {
+			cb(xhttp.responseText);
+       }
+    };
+    xhttp.open("GET", URL, true);
+	xhttp.send();
 }
 
 function login(email, password) {
@@ -168,19 +174,8 @@ function login(email, password) {
 	});
 }
 
-function simpleGetReq(URL, cb) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status >= 200) {
-			cb(xhttp.responseText);
-       }
-    };
-    xhttp.open("GET", URL, true);
-	xhttp.send();
-}
-
 function addSite(url, aliasText, period, apdex, probes, alerting, Method, key, value) {
-	simpleGetReq("https://api.up.hamravesh.ir/api/v1/probers/", function(responseText) {
+	getReqProbers("https://api.up.hamravesh.ir/api/v1/probers/", function(responseText) {
 		var obj = JSON.parse(responseText);
 		var index = [];
 		var probes_final = []
@@ -231,10 +226,10 @@ function getWebsiteData(url) {
 			for(var i=0; i<cookies.length;i++) {
 				chrome.cookies.remove({url: "https://api.up.hamravesh.ir" + cookies[i].path, name: cookies[i].name});
 			}
-			getReq("https://api.up.hamravesh.ir/api/v1/monitors/", url, true);
+			getReqMonitors("https://api.up.hamravesh.ir/api/v1/monitors/", url);
 		}
 		else {
-			getReq("https://api.up.hamravesh.ir/api/v1/monitors/", url, true);
+			getReqMonitors("https://api.up.hamravesh.ir/api/v1/monitors/", url);
 		}
 	});
 	
@@ -273,6 +268,7 @@ function getSelectValues(select) {
 
 document.addEventListener('DOMContentLoaded', function() {
     var checkPageButton = document.getElementById('clickIt');
+
 	var AliasBtn = document.getElementById('AliasBtn');
 	var ParamBtn = document.getElementById('ParamBtn');
 	var MethodBtn = document.getElementById('MethodBtn');

@@ -3,87 +3,90 @@
     <head>
         <title>Click It</title>
     </head>
+
     <style type="text/css">
-	body {
-            margin: 5px;
-    }
-	h1 {
-	    font-size: 15px;
-	    text-align: center;
-    }
-	
-	#clickIt {
-		clear: both;
-		display:block;
-	}
-	
-	#tableHeader {
-		width: 400px;
-	}
-	
-	.responseTable { 
-		tr:border: 1px solid #ccc;
-	}
 
-	.tableHeader {
-		text-align: center;
-		width: 24%;
-		border: 1px solid #ccc;
-		float: left;
-	}
+		body {
+	            margin: 5px;
+	    }
+		h1 {
+		    font-size: 15px;
+		    text-align: center;
+	    }
 		
-	/* Style the tab */
-	.tab {
-	  width: 500px;
-	  overflow: hidden;
-	  border: 1px solid #ccc;
-	  background-color: #f1f1f1;
-	}
+		#clickIt {
+			clear: both;
+			display:block;
+		}
+		
+		#tableHeader {
+			width: 400px;
+		}
+		
+		.responseTable { 
+			tr:border: 1px solid #ccc;
+		}
 
-	/* Style the buttons inside the tab */
-	.tab button {
-	  background-color: inherit;
-	  float: left;
-	  border: none;
-	  outline: none;
-	  cursor: pointer;
-	  padding: 14px 16px;
-	  transition: 0.3s;
-	  font-size: 17px;
-	}
+		.tableHeader {
+			text-align: center;
+			width: 24%;
+			border: 1px solid #ccc;
+			float: left;
+		}
+			
+		/* Style the tab */
+		.tab {
+		  width: 500px;
+		  overflow: hidden;
+		  border: 1px solid #ccc;
+		  background-color: #f1f1f1;
+		}
 
-	/* Change background color of buttons on hover */
-	.tab button:hover {
-	  background-color: #ddd;
-	}
+		/* Style the buttons inside the tab */
+		.tab button {
+		  background-color: inherit;
+		  float: left;
+		  border: none;
+		  outline: none;
+		  cursor: pointer;
+		  padding: 14px 16px;
+		  transition: 0.3s;
+		  font-size: 17px;
+		}
 
-	/* Create an active/current tablink class */
-	.tab button.active {
-	  background-color: #ccc;
-	}
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+		  background-color: #ddd;
+		}
 
-	/* Style the tab content */
-	.tabcontent {
-	  display: none;
-	  padding: 6px 12px;
-	  border: 1px solid #ccc;
-	  border-top: none;
-	}
-	
-	#login {
-		display: none;
-	}
-	#addSite {
-		display: none;
-	}
-	#getData {
-		display: none;
-	}
+		/* Create an active/current tablink class */
+		.tab button.active {
+		  background-color: #ccc;
+		}
+
+		/* Style the tab content */
+		.tabcontent {
+		  display: none;
+		  padding: 6px 12px;
+		  border: 1px solid #ccc;
+		  border-top: none;
+		}
+		
+		#login {
+			display: none;
+		}
+		#addSite {
+			display: none;
+		}
+		#getData {
+			display: none;
+		}
+
     </style>
+
     <body>
 		<div id="login" >
 			<h1>Please Login.</h1>
-			<p id=response></p>
 			Email:<br>
 			<input type="text" name="email" id="email" required>
 			<br>
@@ -93,8 +96,6 @@
 		</div>
 		<div id="addSite" >
 			<h1>Add new Site to monitor.</h1>
-			<p id=response></p>
-			
 			<div class="tab">
 			  <button id="AliasBtn" class="tablinks" >Alias</button>
 			  <button id="ParamBtn" class="tablinks" >Param</button>
@@ -137,11 +138,6 @@
 				</select><br>
 				<p>Alerting:</p><br>
 				<select id="alerting">
-					<!-- <option value="GET">Hetzner</option> -->
-					<!-- <option value="POST">POST</option> -->
-					<!-- <option value="PUT">PUT</option> -->
-					<!-- <option value="DELETE">DELETE</option> -->
-					<!-- <option value="HEAD">HEAD</option> -->
 				</select><br>
 			</div>
 			<div id="Method" class="tabcontent">
@@ -166,7 +162,6 @@
 		</div>
 		<div id="getData" >
 			<h1>Data.</h1>
-			<p id=response></p>
 			<div id="tableHeader"><p class="tableHeader">name lookup</p><p class="tableHeader">connection</p><p class="tableHeader">tls handshake</p><p class="tableHeader">response time</p></div><br>
 			<div id="res"></div>
 			<div id="piechart"></div>
